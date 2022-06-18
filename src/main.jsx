@@ -5,7 +5,6 @@ import './index.css'
 
 import { Provider } from 'react-redux';
 import { store } from './store';
-import { PokemonApp } from './PokemonApp';
 
 import { ThemeProvider } from '@mui/material/styles';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -17,7 +16,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       <ThemeProvider theme={theme}>
         <CssBaseline />
         <App />
-        {/* <PokemonApp /> */}
       </ThemeProvider>
     </Provider>
   </React.StrictMode>

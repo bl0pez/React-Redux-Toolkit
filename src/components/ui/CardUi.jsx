@@ -5,8 +5,12 @@ import {
   CardContent,
   Typography,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
 
-export const CardUi = ({ title, body, action }) => {
+export const CardUi = ({ title, body, url = '/' }) => {
+
+  const navigate = useNavigate();
+
   return (
     <Card sx={{ maxWidth: 275, p: 1, height: 300 }} xs={12}>
       <CardContent>
@@ -18,7 +22,7 @@ export const CardUi = ({ title, body, action }) => {
         </Typography>
       </CardContent>
       <CardActions>
-        <Button variant="contained" sx={{backgroundColor: "primary.main"}} >Ver</Button>
+        <Button variant="contained" onClick={() => {navigate(url)}} sx={{backgroundColor: "primary.main"}} >Ver</Button>
       </CardActions>
     </Card>
   );
