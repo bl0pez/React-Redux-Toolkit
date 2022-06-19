@@ -1,21 +1,26 @@
-import { Card, CardMedia, Container, Grid, Pagination, Typography } from "@mui/material";
-import { padding } from "@mui/system";
-import axios from "axios";
-import { useEffect, useState } from "react";
+import {
+  Card,
+  CardHeader,
+  CardMedia,
+  Container,
+  Grid,
+  Typography,
+} from "@mui/material";
+import { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { getPokemons } from "../../store/slices/pokemon";
+import { ArrowBack, ArrowForward } from "@mui/icons-material";
+import { BackUi, ButtonArrow } from "../ui";
 
 export const Pokemons = () => {
   const dispatch = useDispatch();
-  const { isLoading, pokemons, page } = useSelector((state) => state.pokemons);
-  const [pokemonL, setpokemonL] = useState([])
+  const { isLoading, pokemons, nextPage, backPage } = useSelector(
+    (state) => state.pokemons
+  );
 
   useEffect(() => {
     dispatch(getPokemons());
   }, []);
-
-  console.log(pokemons);
-
 
   return (
     <Container
@@ -27,25 +32,28 @@ export const Pokemons = () => {
         padding: "20px",
       }}
     >
-      <Typography variant="h2" textAlign="center" component="div">
+      <Typography variant="h2" textAlign="center" sx={{ p: 2 }} component="div">
         Pokemons
       </Typography>
-      {/* <Grid container spacing={3}>
-        {pokemonL?.map((p) => (
-          <Grid item xs={12} sm={6} md={4} key={index}>
-            <Card>
-              <CardMedia
-                component="img"
-                height="194"
-                image={p.sprites.front_default}
-                alt="Paella dish"
-              />
-
+      <Grid container spacing={5}>
+        {pokemons.map((p) => (
+          <Grid item height={387} width={308} key={p.name}>
+            <Card sx={{ p: 2 }}>
+              <CardHeader sx={{ textAlign: "center" }} title={p.name} />
+              <CardMedia component="img" image={p.img} alt="Paella dish" />
             </Card>
           </Grid>
         ))}
-      </Grid> */}
-      <Pagination count={10}/>
+      </Grid>
+      <Grid container justifyContent="center" padding={1} gap={1}>
+          <ButtonArrow isLoading={isLoading} func={ () => dispatch(getPokemons(backPage)) }>
+              <ArrowBack sx={{ fontSize: 30 }} />
+          </ButtonArrow>
+          <ButtonArrow isLoading={isLoading} func={ () => dispatch(getPokemons(nextPage)) }>
+              <ArrowForward sx={{ fontSize: 30 }} />
+          </ButtonArrow>
+      </Grid>
+      <BackUi />
     </Container>
   );
 };

@@ -13,7 +13,8 @@ export const pokemonSlice = createSlice({
         },
         setPokemons: (state, action) => {
                 state.isLoading = false;
-                state.page = action.payload.page;
+                state.nextPage = action.payload.nextPage;
+                state.backPage = action.payload.backPage;
                 state.pokemons = action.payload.pokemons;
         }
     }

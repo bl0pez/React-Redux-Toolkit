@@ -6,19 +6,19 @@ export const Home = () => {
     <Main>
       <CardUi
         title="Contador"
-        body="Contador de incrementar y decrementar con Redux Toolkit"
+        body="Contador de incrementar y decrementar con Redux-Toolkit"
         url="counter"
       />
 
       <CardUi
         title="Pokemon"
-        body="Peticiones a la api de pokemonsApi con Redux Toolkit"
+        body="Peticiones a la api de pokemonsApi con axios y Redux-Toolkit"
         url="pokemons"
       />
 
       <CardUi 
         title="Todo" 
-        body="Lista de tareas por hacer con Redux Toolkit"
+        body="Lista de todo con Redux-Toolkit y RKT Query"
         url="todos" 
         />
     </Main>
